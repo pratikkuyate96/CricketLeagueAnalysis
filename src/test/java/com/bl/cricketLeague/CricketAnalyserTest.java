@@ -23,4 +23,16 @@ public class CricketAnalyserTest {
         } catch (CricketAnalyserException | JsonSyntaxException e) {
         }
     }
+
+    @Test
+    public void givenWhenCricketData_ShouldReturn_TopStrikeRate() {
+        try {
+            CricketAnalyser cricketAnalyzer = new CricketAnalyser();
+            cricketAnalyzer.loadCricketData( BATSMEN_DATA );
+            String sortedCensusData = cricketAnalyzer.getFieldWiseData( "strikerate" );
+            BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
+            Assert.assertEquals( "Ishant Sharma", censusCSV[0].player );
+        } catch (CricketAnalyserException | JsonSyntaxException e) {
+        }
+    }
 }

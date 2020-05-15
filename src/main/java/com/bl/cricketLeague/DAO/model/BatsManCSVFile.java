@@ -9,9 +9,15 @@ public class BatsManCSVFile {
     @CsvBindByName(column = "Avg", required = true)
     public double average;
 
-    public BatsManCSVFile(String player, double average) {
+    @CsvBindByName(column = "SR", required = true)
+    public double strikeRate;
+
+
+
+    public BatsManCSVFile(String player, double average,double strikeRate) {
         this.player = player;
         this.average = average;
+        this.strikeRate = strikeRate;
     }
 
     @Override
