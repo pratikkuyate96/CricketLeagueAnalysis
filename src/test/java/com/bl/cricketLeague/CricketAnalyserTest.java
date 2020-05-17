@@ -45,7 +45,6 @@ public class CricketAnalyserTest {
     }
 
     @Test
-
     public void givenIPLData_WhenGivenSixAndFours_ShouldReturnCorrectRecord() {
         try {
             cricketAnalyser.loadCricketData( BATSMEN_DATA );
@@ -56,4 +55,17 @@ public class CricketAnalyserTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenIPLData_WhenGivenSixAndFours_ShouldReturnPlayerWithHighestStrikingRates() {
+        try {
+            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.SIX_FOURS);
+            BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
+            Assert.assertEquals( "David Warner", censusCSV[0].player );
+        } catch (CricketAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

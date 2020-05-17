@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -17,15 +16,17 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class CricketAnalyser {
-        Map<SortField, Comparator<CricketDAO>> sortMap;
-        Map<String, CricketDAO> daoMap = new HashMap<>();
-        List<CricketDAO> daoList;
+        Map<SortField, Comparator<BatsManCSVFile>> sortMap;
+        Map<String, CricketDAO> daoMap;
+        List<BatsManCSVFile> daoList;
 
     public CricketAnalyser() {
+        this.daoMap = new HashMap<>();
         this.sortMap = new HashMap<>();
         this.sortMap.put(SortField.AVG, Comparator.comparing(cricketDAO -> cricketDAO.average));
         this.sortMap.put(SortField.STRIKING_RATES, Comparator.comparing(cricketDAO -> cricketDAO.strikeRate));
-        this.sortMap.put(SortField.SIX_FOURS, Comparator.comparing(cricketDAO -> cricketDAO.six + cricketDAO.fours));
+        this.sortMap.put(SortField.SIX_FOURS, Comparator.comparing(cricketDAO -> cricketDAO.sixs + cricketDAO.fours));
+        this.sortMap.put(SortField.SIX_FOURS, Comparator.comparing(cricketDAO -> cricketDAO.sixs + cricketDAO.fours / cricketDAO.ballsFaced * 100));
     }
 
         public int loadCricketData (String csvFilePath){
