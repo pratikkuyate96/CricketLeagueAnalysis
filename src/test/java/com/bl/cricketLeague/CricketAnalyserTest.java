@@ -68,4 +68,16 @@ public class CricketAnalyserTest {
         }
     }
 
+    @Test
+    public void givenIPLData_WhenGivenAvg_StrikingRates_ShouldReturnPlayerWithHighestStrikingRates() {
+        try {
+            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.AVG_SR);
+            BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
+            Assert.assertEquals( "MS Dhoni", censusCSV[0].player );
+        } catch (CricketAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
