@@ -44,4 +44,8 @@ public class BatsManCSVFile {
         this.ballsFaced=ballsFaced;
         this.runs=runs;
     }
+
+    public BatsManCSVFile(){
+
+    }
 }

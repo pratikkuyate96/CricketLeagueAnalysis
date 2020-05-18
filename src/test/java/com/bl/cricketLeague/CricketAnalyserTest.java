@@ -11,7 +11,9 @@ import com.bl.cricketLeague.service.CricketAnalyser;
 
 public class CricketAnalyserTest {
 
-    String BATSMEN_DATA = "./src/test/resources/IPL2019FactsheetMostRuns.csv";
+    private static final String IPL_MOST_RUNS_FILE_PATH = "src/test/resources/IPL2019FactsheetMostRuns.csv";
+    private static final String IPL_MOST_BALLS_FILE_PATH = "src/test/resources/IPL2019FactsheetMostWkts.csv";
+
 
     CricketAnalyser cricketAnalyser;
 
@@ -23,7 +25,7 @@ public class CricketAnalyserTest {
     @Test
     public void givenWhenCricketData_ShouldReturn_TopBattingAverage() {
         try {
-            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            cricketAnalyser.loadIPLBatsmenData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_RUNS_FILE_PATH);
             String sortedData = cricketAnalyser.getFieldWiseData(SortField.AVG );
             BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedData, BatsManCSVFile[].class );
             Assert.assertEquals( "MS Dhoni", censusCSV[0].player );
@@ -35,7 +37,7 @@ public class CricketAnalyserTest {
     @Test
     public void givenWhenCricketData_ShouldReturn_TopStrikeRate() {
         try {
-            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            cricketAnalyser.loadIPLBatsmenData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_RUNS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.STRIKING_RATES );
             BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
             Assert.assertEquals( "Ishant Sharma", censusCSV[0].player );
@@ -47,7 +49,7 @@ public class CricketAnalyserTest {
     @Test
     public void givenIPLData_WhenGivenSixAndFours_ShouldReturnCorrectRecord() {
         try {
-            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            cricketAnalyser.loadIPLBatsmenData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_RUNS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.SIX_FOURS);
             BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
             Assert.assertEquals( "Andre Russell", censusCSV[0].player );
@@ -59,7 +61,7 @@ public class CricketAnalyserTest {
     @Test
     public void givenIPLData_WhenGivenSixAndFours_ShouldReturnPlayerWithHighestStrikingRates() {
         try {
-            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            cricketAnalyser.loadIPLBatsmenData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_RUNS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.SIX_FOURS);
             BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
             Assert.assertEquals( "David Warner", censusCSV[0].player );
@@ -71,7 +73,7 @@ public class CricketAnalyserTest {
     @Test
     public void givenIPLData_WhenGivenAvg_StrikingRates_ShouldReturnPlayerWithHighestStrikingRates() {
         try {
-            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            cricketAnalyser.loadIPLBatsmenData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_RUNS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.AVG_SR);
             BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
             Assert.assertEquals( "MS Dhoni", censusCSV[0].player );
@@ -83,10 +85,22 @@ public class CricketAnalyserTest {
     @Test
     public void  givenIPLData_WhenGivenAvgRuns_ShouldReturnPlayerWithHighestStrikingRates() {
         try {
-            cricketAnalyser.loadCricketData( BATSMEN_DATA );
+            cricketAnalyser.loadIPLBatsmenData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_RUNS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.AVG_RUNS);
             BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
             Assert.assertEquals( "MS Dhoni", censusCSV[0].player );
+        } catch (CricketAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void  givenIPLData_WhenGivenBowlingAverage_ShouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_BALLS_FILE_PATH);
+            String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.AVG_RUNS);
+            BatsManCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BatsManCSVFile[].class );
+            Assert.assertEquals( 166.0, censusCSV[0].player );
         } catch (CricketAnalyserException e) {
             e.printStackTrace();
         }

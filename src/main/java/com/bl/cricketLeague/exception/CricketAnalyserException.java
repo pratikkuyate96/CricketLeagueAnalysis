@@ -10,6 +10,6 @@ public class CricketAnalyserException extends RuntimeException {
     }
 
     public enum ExceptionType {
-        NO_CRICKET_DATA
+        NO_CRICKET_DATA,CSV_FILE_PROBLEM,INVALID_TYPE
     }
 }

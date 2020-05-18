@@ -1,21 +1,21 @@
 package com.bl.cricketLeague.service;
 
-import com.bl.cricketLeague.csvparser.CSVBuilderFactory;
+import com.bl.cricketLeague.adapter.IPLAdapter;
+import com.bl.cricketLeague.adapter.IPLAdapterFactory;
 import com.bl.cricketLeague.dao.CricketDAO;
-import com.bl.cricketLeague.csvparser.ICSVBuilder;
 import com.bl.cricketLeague.exception.CricketAnalyserException;
 import com.bl.cricketLeague.model.BatsManCSVFile;
+import com.bl.cricketLeague.model.BowlerCSVFile;
 import com.google.gson.Gson;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class CricketAnalyser {
+
+        public enum BatsOrBall {BATTING, BALLING}
+
         Map<SortField, Comparator<BatsManCSVFile>> sortMap;
         Map<String, CricketDAO> daoMap;
         List<BatsManCSVFile> daoList;
@@ -31,22 +31,18 @@ public class CricketAnalyser {
         this.sortMap.put(SortField.AVG_SR, Comparator.comparing(cricketDAO -> cricketDAO.runs));
     }
 
-        public int loadCricketData (String csvFilePath){
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
-            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator<BatsManCSVFile> csvIterator = csvBuilder.getCSVFileIterator(reader, BatsManCSVFile.class);
-            Iterable<BatsManCSVFile> csvIterable = () -> csvIterator;
-            StreamSupport.stream(csvIterable.spliterator(), false)
-                    .forEach(cricketDAO -> daoMap.put(cricketDAO.player, new CricketDAO(cricketDAO)));
-            return daoMap.size();
-        } catch (IOException e) {
-            throw new CricketAnalyserException("No such file", CricketAnalyserException.ExceptionType.NO_CRICKET_DATA);
-        } catch (RuntimeException e) {
-            throw new CricketAnalyserException("No Census data available", CricketAnalyserException.ExceptionType.NO_CRICKET_DATA);
-        }
+    public int loadIPLBatsmenData(BatsOrBall batsOrBall, String csvFilePath) {
+        daoMap = IPLAdapterFactory.getIPLAdapter(batsOrBall, csvFilePath);
+        return daoMap.size();
+    }
+
+    public int loadIPLBowlerData(BatsOrBall batsOrBall, String csvFilePath) {
+        daoMap = IPLAdapter.loadCricketData(BowlerCSVFile.class, csvFilePath);
+        return daoMap.size();
     }
 
         public String getFieldWiseData (SortField sortField) {
+        daoList = daoMap.values().stream().collect(Collectors.toList());
         if (daoMap == null || daoMap.size() == 0) {
             throw new CricketAnalyserException("No Census data available", CricketAnalyserException.ExceptionType.NO_CRICKET_DATA);
         }
