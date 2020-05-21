@@ -125,7 +125,7 @@ public class CricketAnalyserTest {
             cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_BALLS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.ECONOMY);
             BowlerCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BowlerCSVFile[].class );
-            Assert.assertEquals( "Umesh Yadav", censusCSV[0].player );
+            Assert.assertEquals( "Shivam Dube", censusCSV[0].player );
         } catch (CricketAnalyserException e) {
             e.printStackTrace();
         }

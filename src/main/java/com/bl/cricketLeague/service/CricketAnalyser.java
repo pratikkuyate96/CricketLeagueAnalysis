@@ -20,7 +20,7 @@ public class CricketAnalyser {
 
         Map<SortField, Comparator<CricketDAO>> sortMap;
         Map<String, CricketDAO> daoMap;
-        List<CricketDAO> daoList =null;
+        List<CricketDAO> daoList;// = null;
 
     public CricketAnalyser() {
         this.daoMap = new HashMap<>();
@@ -52,4 +52,5 @@ public class CricketAnalyser {
             String sortedStateCensusJson = new Gson().toJson(daoList);
             return sortedStateCensusJson;
     }
+
 }
