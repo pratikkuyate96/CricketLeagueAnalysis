@@ -1,7 +1,8 @@
 package com.bl.cricketLeague.adapter;
 
-import com.bl.cricketLeague.csvparser.CSVBuilderFactory;
-import com.bl.cricketLeague.csvparser.ICSVBuilder;
+
+import censusanalyser.model.CSVBuilderFactory;
+import censusanalyser.model.ICSVBuilder;
 import com.bl.cricketLeague.dao.CricketDAO;
 import com.bl.cricketLeague.exception.CricketAnalyserException;
 import com.bl.cricketLeague.model.BatsManCSVFile;
@@ -14,18 +15,20 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.StreamSupport;
-
-import static java.nio.file.Paths.*;
+import java.nio.file.Paths;
 
 public abstract class IPLAdapter {
+
     public abstract Map<String, CricketDAO> loadCricketData (String csvFilePath);
 
     public static <E> Map<String, CricketDAO> loadCricketData (Class<E> iplClass, String csvFilePath) {
         Map<String, CricketDAO> daoMap = new HashMap<>();
-        try (Reader reader = Files.newBufferedReader(get(csvFilePath))) {
+
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<E> csvIterator = icsvBuilder.getCSVFileIterator(reader, iplClass);
             Iterable<E> csvIterable = () -> csvIterator;
+
             if (iplClass.getName() == "com.bl.cricketLeague.model.BatsManCSVFile") {
                 StreamSupport.stream(csvIterable.spliterator(), false)
                         .map(BatsManCSVFile.class::cast).
@@ -36,10 +39,13 @@ public abstract class IPLAdapter {
                         forEach(csvFile -> daoMap.put(csvFile.player, new CricketDAO(csvFile)));
             }
             return daoMap;
+
         } catch (IOException e) {
             throw new CricketAnalyserException(e.getMessage(), CricketAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
         } catch (RuntimeException e) {
             throw new CricketAnalyserException(e.getMessage(), CricketAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
         }
     }
+
+    public abstract Map<String, CricketDAO> loadCricketData(String... csvFilePath);
 }

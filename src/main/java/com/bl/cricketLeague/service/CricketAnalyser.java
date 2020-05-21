@@ -4,21 +4,23 @@ import com.bl.cricketLeague.adapter.IPLAdapter;
 import com.bl.cricketLeague.adapter.IPLAdapterFactory;
 import com.bl.cricketLeague.dao.CricketDAO;
 import com.bl.cricketLeague.exception.CricketAnalyserException;
-import com.bl.cricketLeague.model.BatsManCSVFile;
 import com.bl.cricketLeague.model.BowlerCSVFile;
+
 import com.google.gson.Gson;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 
 public class CricketAnalyser {
 
-        public enum BatsOrBall {BATTING, BALLING}
+    public enum BatsOrBall {
+        BATTING, BALLING
+    }
 
-        Map<SortField, Comparator<BatsManCSVFile>> sortMap;
+        Map<SortField, Comparator<CricketDAO>> sortMap;
         Map<String, CricketDAO> daoMap;
-        List<BatsManCSVFile> daoList;
+        List<CricketDAO> daoList =null;
 
     public CricketAnalyser() {
         this.daoMap = new HashMap<>();
@@ -41,13 +43,12 @@ public class CricketAnalyser {
         return daoMap.size();
     }
 
-        public String getFieldWiseData (SortField sortField) {
-        daoList = daoMap.values().stream().collect(Collectors.toList());
-        if (daoMap == null || daoMap.size() == 0) {
-            throw new CricketAnalyserException("No Census data available", CricketAnalyserException.ExceptionType.NO_CRICKET_DATA);
-        }
-        daoList.stream().sorted(this.sortMap.get(sortField).reversed()).collect(Collectors.toList());
-        String sortedStateCensusJson = new Gson().toJson(daoList);
-        return sortedStateCensusJson;
+    public String getFieldWiseData (SortField sortField) {
+            daoList = daoMap.values().stream().collect(Collectors.toList());
+            if (daoList == null || daoList.size() == 0)
+                throw new CricketAnalyserException("No Census data available", CricketAnalyserException.ExceptionType.NO_CRICKET_DATA);
+            daoList.stream().sorted(this.sortMap.get(sortField).reversed()).collect(Collectors.toList());
+            String sortedStateCensusJson = new Gson().toJson(daoList);
+            return sortedStateCensusJson;
     }
 }

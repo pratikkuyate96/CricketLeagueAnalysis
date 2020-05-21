@@ -8,7 +8,7 @@ import java.util.Map;
 public class IPLBowlerAdapter extends IPLAdapter {
 
     @Override
-    public Map<String, CricketDAO> loadCricketData (String csvFilePath) {
-        return super.loadCricketData (BowlerCSVFile.class, csvFilePath);
+    public Map<String, CricketDAO> loadCricketData (String... csvFilePath) {
+        return super.loadCricketData (BowlerCSVFile.class, csvFilePath[0]);
     }
 }

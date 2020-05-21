@@ -10,11 +10,17 @@ public class BowlerCSVFile {
     @CsvBindByName(column = "Avg", required = true)
     public double average;
 
-    public BowlerCSVFile(String player, double average) {
-        this.player = player;
-        this.average = average;
-    }
+    @CsvBindByName(column = "Wkts", required = true)
+    public double wicket;
 
-    public BowlerCSVFile() {
-    }
+    @CsvBindByName(column = "SR", required = true)
+    public double strikeRate;
+
+//    public BowlerCSVFile(String player, double average) {
+//        this.player = player;
+//        this.average = average;
+//    }
+//
+//    public BowlerCSVFile() {
+//    }
 }

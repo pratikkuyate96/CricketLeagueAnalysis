@@ -19,4 +19,5 @@ public enum SortField {
                 Comparator.comparing(iplBatsmanDAO -> iplBatsmanDAO.strikeRate, Comparator.reverseOrder());
         sortMap.put(SortField.STRIKING_RATES, strikeRateComparator);
     }
+
 }
