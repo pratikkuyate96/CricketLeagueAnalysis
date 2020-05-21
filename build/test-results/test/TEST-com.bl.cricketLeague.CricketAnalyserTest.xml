@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.cricketLeague.CricketAnalyserTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-05-21T04:51:18" hostname="HP" time="0.879">
+<testsuite name="com.bl.cricketLeague.CricketAnalyserTest" tests="13" skipped="0" failures="1" errors="0" timestamp="2020-05-21T07:48:35" hostname="HP" time="8.274">
   <properties/>
-  <testcase name="givenIPLData_WhenGivenStrikingRatesWithAvg_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.879">
-    <failure message="org.junit.ComparisonFailure: expected:&lt;[Krishnappa Gowtham]&gt; but was:&lt;[Umesh Yadav]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[Krishnappa Gowtham]&gt; but was:&lt;[Umesh Yadav]&gt;
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at org.junit.Assert.assertEquals(Assert.java:144)
-	at com.bl.cricketLeague.CricketAnalyserTest.givenIPLData_WhenGivenStrikingRatesWithAvg_ShouldReturnCorrectRecord(CricketAnalyserTest.java:152)
+  <testcase name="givenIPLData_WhenGivenStrikingRatesWithAvg_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="1.345"/>
+  <testcase name="givenIPLData_WhenGivenBowlingAverage_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.62"/>
+  <testcase name="givenIPLData_WhenGivenSixAndFours_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.57"/>
+  <testcase name="givenIPLData_WhenGivenBestAvgOfBatsmanAndBowler_ShouldReturnCorrectPlayer" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.662"/>
+  <testcase name="givenWhenCricketData_ShouldReturn_TopBattingAverage" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.475"/>
+  <testcase name="givenIPLData_WhenGivenBowlingStrikingRates_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.457"/>
+  <testcase name="givenIPLData_WhenGivenStrikingRatesWith4sand5s_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.472"/>
+  <testcase name="givenIPLData_WhenGivenBestEconomyRates_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.44"/>
+  <testcase name="givenWhenCricketData_ShouldReturn_TopStrikeRate" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.457"/>
+  <testcase name="givenIPLData_WhenGivenAvg_StrikingRates_ShouldReturnPlayerWithHighestStrikingRates" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.49"/>
+  <testcase name="givenIPLData_WhenGivenAvgRuns_ShouldReturnPlayerWithHighestStrikingRates" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.46">
+    <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.bl.cricketLeague.service.CricketAnalyser.getFieldWiseData(CricketAnalyser.java:61)
+	at com.bl.cricketLeague.CricketAnalyserTest.givenIPLData_WhenGivenAvgRuns_ShouldReturnPlayerWithHighestStrikingRates(CricketAnalyserTest.java:90)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -56,6 +65,8 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
+  <testcase name="givenIPLData_WhenGivenWicketsWithAvg_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="1.184"/>
+  <testcase name="givenIPLData_WhenGivenSixAndFours_ShouldReturnPlayerWithHighestStrikingRates" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.601"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

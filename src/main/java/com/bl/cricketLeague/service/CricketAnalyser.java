@@ -25,18 +25,23 @@ public class CricketAnalyser {
     public CricketAnalyser() {
         this.daoMap = new HashMap<>();
         this.sortMap = new HashMap<>();
-        this.sortMap.put(SortField.AVG, Comparator.comparing(cricketDAO -> cricketDAO.average));
+        this.sortMap.put(SortField.AVG, Comparator.comparing(cricketDAO -> cricketDAO.battingaverage));
         this.sortMap.put(SortField.STRIKING_RATES, Comparator.comparing(cricketDAO -> cricketDAO.strikeRate));
         this.sortMap.put(SortField.SIX_FOURS, Comparator.comparing(cricketDAO -> cricketDAO.sixs + cricketDAO.fours));
         this.sortMap.put(SortField.SIX_FOURS, Comparator.comparing(cricketDAO -> cricketDAO.sixs + cricketDAO.fours / cricketDAO.ballsFaced * 100));
-        this.sortMap.put(SortField.AVG_SR, Comparator.comparing(cricketDAO -> cricketDAO.average * cricketDAO.strikeRate / 100));
+        this.sortMap.put(SortField.AVG_SR, Comparator.comparing(cricketDAO -> cricketDAO.battingaverage * cricketDAO.strikeRate / 100));
         this.sortMap.put(SortField.AVG_SR, Comparator.comparing(cricketDAO -> cricketDAO.runs));
         this.sortMap.put(SortField.ECONOMY, Comparator.comparing(cricketDAO -> cricketDAO.economy));
         Comparator<CricketDAO> maxWicketsAndStrikeRate = Comparator.comparing(iplData -> iplData.fourWicket + iplData.fiveWicket);
         this.sortMap.put(SortField.WICKETS_AND_STRIKERATE, maxWicketsAndStrikeRate.thenComparing(iplData -> iplData.strikeRate));
         Comparator<CricketDAO> maxWicketsAndStrikeRates = Comparator.comparing(cricketDAO -> cricketDAO.wicket);
         this.sortMap.put(SortField.WICKET_AND_AVG, maxWicketsAndStrikeRates.thenComparing(cricketDAO -> cricketDAO.strikeRate));
+        sortMap.put(SortField.BEST_BATTING_BOWLING_AVERAGE, new GetAverage());
+    }
 
+    public int loadCricketData(BatsOrBall batsOrBall, String... csvFilePath) {
+        daoMap = new IPLAdapterFactory().getIPLAdapter(batsOrBall, csvFilePath);
+        return daoMap.size();
     }
 
     public int loadIPLBatsmenData(BatsOrBall batsOrBall, String csvFilePath) {

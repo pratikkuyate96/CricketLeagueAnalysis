@@ -18,11 +18,12 @@ import java.util.stream.StreamSupport;
 import java.nio.file.Paths;
 
 public abstract class IPLAdapter {
+    static Map<String, CricketDAO> daoMap;
 
     public abstract Map<String, CricketDAO> loadCricketData (String... csvFilePath);
 
     public static <E> Map<String, CricketDAO> loadCricketData (Class<E> iplClass, String csvFilePath) {
-        Map<String, CricketDAO> daoMap = new HashMap<>();
+        daoMap = new HashMap<>();
 
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
@@ -41,8 +42,10 @@ public abstract class IPLAdapter {
             return daoMap;
 
         } catch (IOException e) {
+            e.printStackTrace();
             throw new CricketAnalyserException(e.getMessage(), CricketAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             throw new CricketAnalyserException(e.getMessage(), CricketAnalyserException.ExceptionType.CSV_FILE_PROBLEM);
         }
     }

@@ -6,7 +6,7 @@ import com.bl.cricketLeague.model.BowlerCSVFile;
 public class CricketDAO {
 
     public String player;
-    public double average;
+//    public double average;
     public double strikeRate;
     public double sixs;
     public double fours;
@@ -16,10 +16,12 @@ public class CricketDAO {
     public double fiveWicket;
     public double fourWicket;
     public double wicket;
+    public double battingaverage;
+    public double ballingAvg;
 
     public CricketDAO(BatsManCSVFile batsManCSVFile) {
         player = batsManCSVFile.player;
-        average = batsManCSVFile.average;
+        battingaverage = batsManCSVFile.average;
         strikeRate = batsManCSVFile.strikeRate;
         sixs = batsManCSVFile.sixs;
         fours = batsManCSVFile.fours;
@@ -29,7 +31,7 @@ public class CricketDAO {
 
     public CricketDAO(BowlerCSVFile bowlerCSVFile) {
         player = bowlerCSVFile.player;
-        average = bowlerCSVFile.average;
+        ballingAvg = bowlerCSVFile.average;
         strikeRate = bowlerCSVFile.strikeRate;
         economy = bowlerCSVFile.economy;
         fiveWicket=bowlerCSVFile.fiveWicket;
