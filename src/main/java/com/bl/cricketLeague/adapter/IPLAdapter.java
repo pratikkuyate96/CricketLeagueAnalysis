@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 
 public abstract class IPLAdapter {
 
-    public abstract Map<String, CricketDAO> loadCricketData (String csvFilePath);
+    public abstract Map<String, CricketDAO> loadCricketData (String... csvFilePath);
 
     public static <E> Map<String, CricketDAO> loadCricketData (Class<E> iplClass, String csvFilePath) {
         Map<String, CricketDAO> daoMap = new HashMap<>();
@@ -47,5 +47,4 @@ public abstract class IPLAdapter {
         }
     }
 
-    public abstract Map<String, CricketDAO> loadCricketData(String... csvFilePath);
 }

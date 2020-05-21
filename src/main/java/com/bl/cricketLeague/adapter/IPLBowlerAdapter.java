@@ -11,4 +11,5 @@ public class IPLBowlerAdapter extends IPLAdapter {
     public Map<String, CricketDAO> loadCricketData (String... csvFilePath) {
         return super.loadCricketData (BowlerCSVFile.class, csvFilePath[0]);
     }
+
 }
