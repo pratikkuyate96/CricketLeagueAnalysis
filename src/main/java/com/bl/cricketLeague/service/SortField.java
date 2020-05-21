@@ -29,15 +29,6 @@ public enum SortField {
         sortMap.put(SortField.WICKET_AND_AVG, maxWicketsAndStrikeRates.thenComparing(cricketDAO -> cricketDAO.strikeRate));
 
         System.out.println(sortMap.size());
-
-
-
-//        Comparator<CricketDAO> avgComparator =
-//                Comparator.comparing(iplBatsmanDAO -> iplBatsmanDAO.strikeRate, Comparator.reverseOrder());
-//        sortMap.put(AVG, avgComparator);
-//        Comparator<CricketDAO> strikeRateComparator =
-//                Comparator.comparing(iplBatsmanDAO -> iplBatsmanDAO.strikeRate, Comparator.reverseOrder());
-//        sortMap.put(SortField.STRIKING_RATES, strikeRateComparator);
     }
 
 }

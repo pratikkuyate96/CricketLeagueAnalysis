@@ -6,7 +6,6 @@ import com.bl.cricketLeague.model.BowlerCSVFile;
 import com.bl.cricketLeague.service.SortField;
 import com.google.gson.Gson;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import com.bl.cricketLeague.service.CricketAnalyser;
 
@@ -14,14 +13,6 @@ public class CricketAnalyserTest {
 
     private static final String IPL_MOST_RUNS_FILE_PATH = "src/test/resources/IPL2019FactsheetMostRuns.csv";
     private static final String IPL_MOST_BALLS_FILE_PATH = "src/test/resources/IPL2019FactsheetMostWkts.csv";
-
-//
-//    CricketAnalyser cricketAnalyser;
-//
-//    @Before
-//    public void setUp() throws Exception {
-//        cricketAnalyser = new CricketAnalyser();
-//    }
 
     @Test
     public void givenWhenCricketData_ShouldReturn_TopBattingAverage() {

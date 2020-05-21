@@ -7,7 +7,6 @@ import com.bl.cricketLeague.service.CricketAnalyser;
 public class CricketDAO {
 
     public String player;
-//    public double average;
     public double strikeRate;
     public double sixs;
     public double fours;
