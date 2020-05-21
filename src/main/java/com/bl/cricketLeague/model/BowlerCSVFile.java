@@ -19,4 +19,10 @@ public class BowlerCSVFile {
     @CsvBindByName(column = "Econ", required = true)
     public double economy;
 
+    @CsvBindByName(column = "4W", required = true)
+    public double fourWicket;
+
+    @CsvBindByName(column = "5W", required = true)
+    public double fiveWicket;
+
 }

@@ -20,7 +20,7 @@ public class CricketAnalyser {
 
         Map<SortField, Comparator<CricketDAO>> sortMap;
         Map<String, CricketDAO> daoMap;
-        List<CricketDAO> daoList;// = null;
+        List<CricketDAO> daoList = null;
 
     public CricketAnalyser() {
         this.daoMap = new HashMap<>();
@@ -32,6 +32,10 @@ public class CricketAnalyser {
         this.sortMap.put(SortField.AVG_SR, Comparator.comparing(cricketDAO -> cricketDAO.average * cricketDAO.strikeRate / 100));
         this.sortMap.put(SortField.AVG_SR, Comparator.comparing(cricketDAO -> cricketDAO.runs));
         this.sortMap.put(SortField.ECONOMY, Comparator.comparing(cricketDAO -> cricketDAO.economy));
+        Comparator<CricketDAO> maxWicketsAndStrikeRate = Comparator.comparing(iplData -> iplData.fourWicket + iplData.fiveWicket);
+        this.sortMap.put(SortField.WICKETS_AND_STRIKERATE, maxWicketsAndStrikeRate.thenComparing(iplData -> iplData.strikeRate));
+
+
     }
 
     public int loadIPLBatsmenData(BatsOrBall batsOrBall, String csvFilePath) {
