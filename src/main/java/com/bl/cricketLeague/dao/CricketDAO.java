@@ -15,6 +15,7 @@ public class CricketDAO {
     public double economy;
     public double fiveWicket;
     public double fourWicket;
+    public double wicket;
 
     public CricketDAO(BatsManCSVFile batsManCSVFile) {
         player = batsManCSVFile.player;
@@ -33,7 +34,7 @@ public class CricketDAO {
         economy = bowlerCSVFile.economy;
         fiveWicket=bowlerCSVFile.fiveWicket;
         fourWicket=bowlerCSVFile.fourWicket;
-
+        wicket = bowlerCSVFile.wicket;
 
     }
 

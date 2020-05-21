@@ -34,7 +34,8 @@ public class CricketAnalyser {
         this.sortMap.put(SortField.ECONOMY, Comparator.comparing(cricketDAO -> cricketDAO.economy));
         Comparator<CricketDAO> maxWicketsAndStrikeRate = Comparator.comparing(iplData -> iplData.fourWicket + iplData.fiveWicket);
         this.sortMap.put(SortField.WICKETS_AND_STRIKERATE, maxWicketsAndStrikeRate.thenComparing(iplData -> iplData.strikeRate));
-
+        Comparator<CricketDAO> maxWicketsAndStrikeRates = Comparator.comparing(cricketDAO -> cricketDAO.wicket);
+        this.sortMap.put(SortField.WICKET_AND_AVG, maxWicketsAndStrikeRates.thenComparing(cricketDAO -> cricketDAO.strikeRate));
 
     }
 

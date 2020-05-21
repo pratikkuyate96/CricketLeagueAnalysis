@@ -155,4 +155,16 @@ public class CricketAnalyserTest {
         }
     }
 
+    @Test
+    public void  givenIPLData_WhenGivenWicketsWithAvg_ShouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BALLING, IPL_MOST_BALLS_FILE_PATH);
+            String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.WICKET_AND_AVG);
+            BowlerCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BowlerCSVFile[].class );
+            Assert.assertEquals( "Imran Tahir", censusCSV[0].player );
+        } catch (CricketAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
