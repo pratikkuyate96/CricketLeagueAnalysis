@@ -98,8 +98,8 @@ public class CricketAnalyserTest {
     @Test
     public void  givenIPLData_WhenGivenBowlingAverage_ShouldReturnCorrectRecord() {
         try {
-            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_BALLS_FILE_PATH);
-            String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.AVG_RUNS);
+            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BALLING, IPL_MOST_BALLS_FILE_PATH);
+            String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.AVG);
             BowlerCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BowlerCSVFile[].class );
             Assert.assertEquals( "Anukul Roy", censusCSV[0].player );
         } catch (CricketAnalyserException e) {
@@ -110,7 +110,7 @@ public class CricketAnalyserTest {
     @Test
     public void givenIPLData_WhenGivenBowlingStrikingRates_ShouldReturnCorrectRecord() {
         try {
-            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_BALLS_FILE_PATH);
+            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BALLING, IPL_MOST_BALLS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.STRIKING_RATES);
             BowlerCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BowlerCSVFile[].class );
             Assert.assertEquals( "Khaleel Ahmed", censusCSV[0].player );
@@ -122,7 +122,7 @@ public class CricketAnalyserTest {
     @Test
     public void givenIPLData_WhenGivenBestEconomyRates_ShouldReturnCorrectRecord() {
         try {
-            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_BALLS_FILE_PATH);
+            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BALLING, IPL_MOST_BALLS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.ECONOMY);
             BowlerCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BowlerCSVFile[].class );
             Assert.assertEquals( "Shivam Dube", censusCSV[0].player );
@@ -134,10 +134,22 @@ public class CricketAnalyserTest {
     @Test
     public void  givenIPLData_WhenGivenStrikingRatesWith4sand5s_ShouldReturnCorrectRecord() {
         try {
-            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BATTING, IPL_MOST_BALLS_FILE_PATH);
+            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BALLING, IPL_MOST_BALLS_FILE_PATH);
             String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.WICKETS_AND_STRIKERATE);
             BowlerCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BowlerCSVFile[].class );
             Assert.assertEquals( "Lasith Malinga", censusCSV[0].player );
+        } catch (CricketAnalyserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void  givenIPLData_WhenGivenStrikingRatesWithAvg_ShouldReturnCorrectRecord() {
+        try {
+            cricketAnalyser.loadIPLBowlerData(CricketAnalyser.BatsOrBall.BALLING, IPL_MOST_BALLS_FILE_PATH);
+            String sortedCensusData = cricketAnalyser.getFieldWiseData(SortField.AVG_SR);
+            BowlerCSVFile[] censusCSV = new Gson().fromJson( sortedCensusData, BowlerCSVFile[].class );
+            Assert.assertEquals( "Krishnappa Gowtham", censusCSV[0].player );
         } catch (CricketAnalyserException e) {
             e.printStackTrace();
         }

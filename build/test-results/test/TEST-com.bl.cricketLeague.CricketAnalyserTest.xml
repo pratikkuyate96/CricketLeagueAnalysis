@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.cricketLeague.CricketAnalyserTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-05-21T04:38:43" hostname="HP" time="1.425">
+<testsuite name="com.bl.cricketLeague.CricketAnalyserTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-05-21T04:51:18" hostname="HP" time="0.879">
   <properties/>
-  <testcase name="givenIPLData_WhenGivenStrikingRatesWith4sand5s_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="1.425">
-    <failure message="org.junit.ComparisonFailure: expected:&lt;[Lasith Malinga]&gt; but was:&lt;[Umesh Yadav]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[Lasith Malinga]&gt; but was:&lt;[Umesh Yadav]&gt;
+  <testcase name="givenIPLData_WhenGivenStrikingRatesWithAvg_ShouldReturnCorrectRecord" classname="com.bl.cricketLeague.CricketAnalyserTest" time="0.879">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[Krishnappa Gowtham]&gt; but was:&lt;[Umesh Yadav]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[Krishnappa Gowtham]&gt; but was:&lt;[Umesh Yadav]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at org.junit.Assert.assertEquals(Assert.java:144)
-	at com.bl.cricketLeague.CricketAnalyserTest.givenIPLData_WhenGivenStrikingRatesWith4sand5s_ShouldReturnCorrectRecord(CricketAnalyserTest.java:140)
+	at com.bl.cricketLeague.CricketAnalyserTest.givenIPLData_WhenGivenStrikingRatesWithAvg_ShouldReturnCorrectRecord(CricketAnalyserTest.java:152)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
