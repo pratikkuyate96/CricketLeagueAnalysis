@@ -25,4 +25,14 @@ public class BowlerCSVFile {
     @CsvBindByName(column = "5W", required = true)
     public double fiveWicket;
 
+    public BowlerCSVFile(String player, double ballingAvg, double strikeRate, double economy, double fiveWicket, double fourWicket, double wicket) {
+        this.player=player;
+        this.average=ballingAvg;
+        this.strikeRate=strikeRate;
+        this.economy=economy;
+        this.fiveWicket=fiveWicket;
+        this.fourWicket=fourWicket;
+        this.wicket=wicket;
+    }
+
 }

@@ -37,7 +37,7 @@ public abstract class IPLAdapter {
             } else if (iplClass.getName() == "com.bl.cricketLeague.model.BowlerCSVFile") {
                 StreamSupport.stream(csvIterable.spliterator(), false).
                         map(BowlerCSVFile.class::cast).
-                        forEach(csvFile -> daoMap.put(csvFile.player, new CricketDAO(csvFile)));
+                        forEach(bowlerCSVFile -> daoMap.put(bowlerCSVFile.player, new CricketDAO(bowlerCSVFile)));
             }
             return daoMap;
 

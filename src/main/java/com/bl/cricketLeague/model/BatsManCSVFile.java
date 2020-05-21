@@ -24,6 +24,16 @@ public class BatsManCSVFile {
     @CsvBindByName(column = "Runs", required = true)
     public int runs;
 
+    public BatsManCSVFile(String player,double battingaverage,double strikeRate,double fours,double ballsFaced,int runs,double sixs) {
+        this.player = player;
+        this.average = battingaverage;
+        this.strikeRate = strikeRate;
+        this.sixs = sixs;
+        this.fours = fours;
+        this.ballsFaced=ballsFaced;
+        this.runs=runs;
+    }
+
     @Override
     public String toString() {
         return "BatsManCSVFile{" +
@@ -35,17 +45,17 @@ public class BatsManCSVFile {
                 '}';
     }
 
-    public BatsManCSVFile(String player, double average, double strikeRate, double sixs, double fours,double ballsFaced,int runs) {
+    public BatsManCSVFile(String player, double average, double strikeRate, double sixs,double fours,double ballsFaced,int runs) {
         this.player = player;
         this.average = average;
         this.strikeRate = strikeRate;
         this.sixs = sixs;
         this.fours = fours;
-        this.ballsFaced=ballsFaced;
-        this.runs=runs;
+        this.ballsFaced = ballsFaced;
+        this.runs = runs;
     }
 
-    public BatsManCSVFile(){
+    public BatsManCSVFile(String player, double battingaverage, double strikeRate, double sixs, double fours, int runs){
 
     }
 }
